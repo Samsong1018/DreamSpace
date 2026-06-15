@@ -1,0 +1,101 @@
+/* DreamSpace Global Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0d0d1a;
+  color: #e8e8f0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #1a1a2e;
+  padding: 12px 24px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #7c6af7;
+  text-decoration: none;
+  margin-right: auto;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+nav a {
+  color: #9090aa;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #7c6af7;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+section {
+  margin-bottom: 48px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #7c6af7;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #9090aa;
+  font-size: 0.85rem;
+  border-top: 1px solid #1a1a2e;
+}
