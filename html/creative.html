@@ -4,12 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="DreamSpace Creative Spark — turn your dreams into story prompts and creative material.">
-  <meta name="keywords" content="creative writing, dream prompts, story ideas, DreamSpace">
-  <meta name="author" content="DMA205 Design Team | DEV109 Team 2">
-  <meta name="robots" content="index, follow">
+  <meta name="description" content="DreamSpace Creative Spark — turn your dreams into story prompts, art ideas, and creative projects.">
+  <meta name="keywords" content="creative spark, dream prompts, dream art, dream story, DreamSpace">
+  <meta name="author" content="Maggie Chao, Sara | DMA205 &amp; DEV109 Team 2">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:title" content="Creative Spark | DreamSpace">
+  <meta property="og:description" content="Turn your dreams into creative prompts and ideas.">
+  <meta property="og:type" content="website">
   <title>Creative Spark | DreamSpace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .spark-box {
+      background: linear-gradient(135deg, #16172e 0%, #1e1040 100%);
+      border: 1px solid #3a2a6a;
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+    .spark-box h2 { color: #c5baf7; margin-bottom: 8px; }
+    .spark-box p { color: #8080a8; margin-bottom: 20px; }
+    .select-group { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+    .dream-select {
+      background: #0e0f1c;
+      border: 1px solid #2a2a4a;
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #dcd8f0;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.875rem;
+      flex: 1;
+      min-width: 160px;
+    }
+    .dream-select:focus { outline: none; border-color: #7c6af7; }
+    .prompt-card {
+      background: #0e0f1c;
+      border: 1px solid #3a2a6a;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .prompt-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9a86f7;
+      margin-bottom: 8px;
+    }
+    .prompt-text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      color: #e8e0ff;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .output-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .output-card {
+      background: #16172e;
+      border: 1px solid #2a2a4a;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .output-card h3 { color: #c5baf7; font-size: 1rem; margin-bottom: 8px; }
+    .output-card p { color: #8080a8; font-size: 0.875rem; font-style: italic; }
+  </style>
 </head>
 <body>
   <header>
@@ -18,7 +82,7 @@
       <ul>
         <li><a href="../index.html">Home</a></li>
         <li><a href="entries.html">Entries</a></li>
-        <li><a href="creative.html">Creative Spark</a></li>
+        <li><a href="creative.html" class="active">Creative Spark</a></li>
         <li><a href="explore.html">Explore</a></li>
         <li><a href="social.html">Community</a></li>
       </ul>
@@ -26,15 +90,76 @@
   </header>
 
   <main>
-    <section>
-      <h1>Creative Spark</h1>
-      <p>Transform your dream entries into story prompts, character ideas, and creative material.</p>
-      <p><em>(Prototype placeholder — creative prompts generated from your entries will display here)</em></p>
+    <section aria-labelledby="spark-heading">
+      <p class="section-label">Turn dreams into ideas</p>
+      <h1 id="spark-heading">Creative Spark &#9889;</h1>
+      <p style="color: #8080a8; max-width: 560px; margin-bottom: 32px;">
+        Pick a dream entry and choose what you want to create. DreamSpace generates
+        story prompts, character ideas, or art concepts drawn directly from your dream.
+      </p>
+
+      <!-- Spark tool -->
+      <div class="spark-box">
+        <h2>Generate a prompt</h2>
+        <p>Select a dream and a creative output type to get started.</p>
+        <form action="#" method="get">
+          <div class="select-group">
+            <label for="select-dream" style="display: none;">Select a dream</label>
+            <select class="dream-select" id="select-dream" name="dream" aria-label="Select a dream entry">
+              <option value="">Choose a dream&hellip;</option>
+              <option>The Glass City (Jun 19)</option>
+              <option>Lost in the Library (Jun 18)</option>
+              <option>The Blue Shore (Jun 16)</option>
+              <option>The Old House (Jun 14)</option>
+            </select>
+            <label for="select-output" style="display: none;">Select output type</label>
+            <select class="dream-select" id="select-output" name="output_type" aria-label="Select output type">
+              <option value="">Output type&hellip;</option>
+              <option>Story prompt</option>
+              <option>Character concept</option>
+              <option>Art concept</option>
+              <option>First sentence</option>
+            </select>
+          </div>
+          <button type="submit" class="btn">Spark It &#9889;</button>
+        </form>
+
+        <!-- Sample output -->
+        <div class="prompt-card" role="region" aria-label="Generated prompt sample">
+          <p class="prompt-label">Story Prompt &mdash; The Glass City</p>
+          <p class="prompt-text">
+            &ldquo;A city where every structure is made of living glass that remembers
+            the emotions of everyone who has ever passed through it &mdash; and a
+            conductor who must guide the last train before the city forgets itself entirely.&rdquo;
+          </p>
+        </div>
+      </div>
+
+      <!-- Output type examples -->
+      <h2 style="margin-bottom: 20px;">What you can create</h2>
+      <div class="output-grid">
+        <div class="output-card">
+          <h3>&#128221; Story Prompt</h3>
+          <p>A full narrative premise based on your dream&rsquo;s setting, conflict, and mood. Ready to write from.</p>
+        </div>
+        <div class="output-card">
+          <h3>&#128100; Character Concept</h3>
+          <p>A character sketch drawn from a figure or presence in your dream, with motivation and voice suggestions.</p>
+        </div>
+        <div class="output-card">
+          <h3>&#127912; Art Concept</h3>
+          <p>A visual description and composition idea for illustrating or painting a scene from your dream.</p>
+        </div>
+        <div class="output-card">
+          <h3>&#9999;&#65039; First Sentence</h3>
+          <p>Just the opening line of a story that begins in the world of your dream. Sometimes that&rsquo;s all you need.</p>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 DreamSpace | DMA205 &amp; DEV109 Collaboration | Bellevue College</p>
+    <p>&copy; 2026 DreamSpace &mdash; DMA205 &amp; DEV109 Collaboration &mdash; Bellevue College</p>
   </footer>
 </body>
 </html>

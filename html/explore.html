@@ -4,12 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="DreamSpace Explore — discover patterns, recurring themes, and emotional trends in your dreams.">
-  <meta name="keywords" content="dream patterns, recurring dreams, mood tracking, DreamSpace">
-  <meta name="author" content="DMA205 Design Team | DEV109 Team 2">
-  <meta name="robots" content="index, follow">
-  <title>Explore Patterns | DreamSpace</title>
+  <meta name="description" content="DreamSpace Explore — find patterns in your dreams across moods, themes, and symbols.">
+  <meta name="keywords" content="dream patterns, dream themes, dream analysis, DreamSpace">
+  <meta name="author" content="Maggie Chao, Sara | DMA205 &amp; DEV109 Team 2">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:title" content="Explore Patterns | DreamSpace">
+  <meta property="og:description" content="Discover patterns across your dream entries.">
+  <meta property="og:type" content="website">
+  <title>Explore | DreamSpace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .stat-box {
+      background: #16172e;
+      border: 1px solid #2a2a4a;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-box strong {
+      display: block;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.2rem;
+      color: #9a86f7;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-box span { font-size: 0.8rem; color: #6060a0; }
+    .bar-chart { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+    .bar-row { display: flex; align-items: center; gap: 12px; }
+    .bar-label { width: 80px; font-size: 0.8rem; color: #8080a8; text-align: right; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 18px; background: #1e1e38; border-radius: 999px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 999px; background: #7c6af7; transition: width 0.3s; }
+    .bar-count { font-size: 0.8rem; color: #6060a0; width: 24px; flex-shrink: 0; }
+    .theme-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .theme-chip {
+      background: rgba(124, 106, 247, 0.1);
+      border: 1px solid rgba(124, 106, 247, 0.25);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: #9a86f7;
+    }
+    .theme-chip.large { font-size: 1rem; padding: 8px 18px; background: rgba(124, 106, 247, 0.2); }
+    .theme-chip.small { font-size: 0.75rem; padding: 4px 10px; opacity: 0.7; }
+  </style>
 </head>
 <body>
   <header>
@@ -19,22 +70,115 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="entries.html">Entries</a></li>
         <li><a href="creative.html">Creative Spark</a></li>
-        <li><a href="explore.html">Explore</a></li>
+        <li><a href="explore.html" class="active">Explore</a></li>
         <li><a href="social.html">Community</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section>
-      <h1>Explore Patterns</h1>
-      <p>Visualize recurring themes, emotions, and tags across your dream journal.</p>
-      <p><em>(Prototype placeholder — pattern visualizations will display here)</em></p>
+    <section aria-labelledby="explore-heading">
+      <p class="section-label">Discover your patterns</p>
+      <h1 id="explore-heading">Explore</h1>
+      <p style="color: #8080a8; max-width: 540px; margin-bottom: 32px;">
+        A look at the themes, moods, and symbols that appear most in your dreams over time.
+        Based on your last 30 days of entries.
+      </p>
+
+      <!-- Stats -->
+      <div class="stat-row">
+        <div class="stat-box">
+          <strong>18</strong>
+          <span>Total entries</span>
+        </div>
+        <div class="stat-box">
+          <strong>4</strong>
+          <span>Lucid dreams</span>
+        </div>
+        <div class="stat-box">
+          <strong>3</strong>
+          <span>Recurring</span>
+        </div>
+        <div class="stat-box">
+          <strong>62%</strong>
+          <span>Positive mood</span>
+        </div>
+      </div>
+
+      <!-- Mood breakdown -->
+      <h2 style="margin-bottom: 16px;">Mood Breakdown</h2>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <span class="bar-label">Peaceful</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 67%; background: #6ac8a0;"></div>
+          </div>
+          <span class="bar-count">6</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Happy</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 55%; background: #f7c36a;"></div>
+          </div>
+          <span class="bar-count">5</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Anxious</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 33%; background: #f77070;"></div>
+          </div>
+          <span class="bar-count">3</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Confused</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 22%; background: #7c6af7;"></div>
+          </div>
+          <span class="bar-count">2</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Scared</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 11%; background: #a070f7;"></div>
+          </div>
+          <span class="bar-count">1</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Excited</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 11%; background: #f7a36a;"></div>
+          </div>
+          <span class="bar-count">1</span>
+        </div>
+      </div>
+
+      <!-- Common themes -->
+      <h2 style="margin-bottom: 16px;">Common Themes</h2>
+      <p style="color: #6060a0; font-size: 0.85rem; margin-bottom: 14px;">Larger tags appear more frequently.</p>
+      <div class="theme-grid">
+        <span class="theme-chip large">water</span>
+        <span class="theme-chip large">travel</span>
+        <span class="theme-chip">lost</span>
+        <span class="theme-chip large">buildings</span>
+        <span class="theme-chip small">animals</span>
+        <span class="theme-chip">flying</span>
+        <span class="theme-chip small">family</span>
+        <span class="theme-chip large">light</span>
+        <span class="theme-chip">books</span>
+        <span class="theme-chip small">school</span>
+        <span class="theme-chip">transformation</span>
+        <span class="theme-chip small">chase</span>
+        <span class="theme-chip">strangers</span>
+      </div>
+
+      <p>
+        <a href="entries.html" class="btn">Add More Entries</a>
+      </p>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 DreamSpace | DMA205 &amp; DEV109 Collaboration | Bellevue College</p>
+    <p>&copy; 2026 DreamSpace &mdash; DMA205 &amp; DEV109 Collaboration &mdash; Bellevue College</p>
   </footer>
 </body>
 </html>
