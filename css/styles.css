@@ -1,5 +1,12 @@
-/* DreamSpace Global Styles */
+/* DreamSpace — Styles */
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600&display=swap');
+
+:root {
+  --accent: #7c6af7;
+}
+
+/* reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,15 +14,74 @@
 }
 
 body {
-  background-color: #0d0d1a;
-  color: #e8e8f0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  line-height: 1.6;
+  background-color: #0e0f1c;
+  color: #dcd8f0;
+  font-family: 'Nunito', 'Segoe UI', Arial, sans-serif;
+  line-height: 1.65;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* typography */
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 14px; }
+h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 12px; }
+h3 { font-size: 1.2rem; margin-bottom: 8px; }
+
+p { margin-bottom: 10px; }
+
+/* layout */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+section {
+  margin-bottom: 56px;
+}
+
+/* section label */
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9a86f7;
+  margin-bottom: 6px;
+}
+
+/* nav */
 header {
-  background-color: #1a1a2e;
-  padding: 12px 24px;
+  background-color: rgba(20, 20, 40, 0.95);
+  border-bottom: 1px solid #2a2a4a;
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 nav {
@@ -27,9 +93,10 @@ nav {
 }
 
 .logo {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #7c6af7;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #9a86f7;
   text-decoration: none;
   margin-right: auto;
 }
@@ -41,61 +108,100 @@ nav ul {
 }
 
 nav a {
-  color: #9090aa;
+  color: #8080a8;
   text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: color 0.15s;
 }
 
-nav a:hover {
-  color: #7c6af7;
-}
+nav a:hover  { color: #9a86f7; }
+nav a.active { color: #9a86f7; border-bottom: 2px solid #9a86f7; }
 
-main {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 48px 24px;
-}
-
-section {
-  margin-bottom: 48px;
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
-}
-
-h2 {
-  font-size: 1.5rem;
-  margin-bottom: 12px;
-}
-
-p {
-  margin-bottom: 10px;
-}
-
-ul {
-  margin-left: 20px;
-}
-
+/* buttons */
 .btn {
   display: inline-block;
-  background-color: #7c6af7;
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 6px;
+  background-color: var(--accent);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 0.875rem;
   margin-top: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
 }
 
 .btn:hover {
-  opacity: 0.85;
+  background-color: #6855e8;
+  transform: translateY(-1px);
 }
 
+.btn:focus-visible {
+  outline: 2px solid #9a86f7;
+  outline-offset: 2px;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: #9a86f7;
+}
+
+.btn-outline:hover {
+  background: rgba(124, 106, 247, 0.1);
+}
+
+/* cards */
+.card {
+  background: #16172e;
+  border: 1px solid #2a2a4a;
+  border-radius: 12px;
+  padding: 20px 24px;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(124, 106, 247, 0.15);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* tags */
+.tag {
+  display: inline-block;
+  background: rgba(124, 106, 247, 0.15);
+  color: #9a86f7;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* footer */
 footer {
   text-align: center;
-  padding: 24px;
-  color: #9090aa;
-  font-size: 0.85rem;
-  border-top: 1px solid #1a1a2e;
+  padding: 32px 24px;
+  color: #4a4a6a;
+  font-size: 0.8rem;
+  border-top: 1px solid #1e1e38;
+  margin-top: 48px;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  nav ul { display: none; }
+  .card-grid { grid-template-columns: 1fr; }
 }

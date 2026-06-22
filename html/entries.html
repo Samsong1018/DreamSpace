@@ -4,12 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="DreamSpace — browse and manage your dream journal entries.">
-  <meta name="keywords" content="dream entries, dream log, dream journal">
-  <meta name="author" content="DMA205 Design Team | DEV109 Team 2">
-  <meta name="robots" content="index, follow">
+  <meta name="description" content="DreamSpace Entries — your personal dream journal log with all past entries.">
+  <meta name="keywords" content="dream entries, dream journal, dream log, DreamSpace">
+  <meta name="author" content="Maggie Chao, Sara | DMA205 &amp; DEV109 Team 2">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:title" content="My Dream Entries | DreamSpace">
+  <meta property="og:description" content="Your personal dream journal on DreamSpace.">
+  <meta property="og:type" content="website">
   <title>Entries | DreamSpace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .entry-form {
+      background: #16172e;
+      border: 1px solid #2a2a4a;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+    .entry-form h2 { color: #c5baf7; margin-bottom: 16px; font-size: 1.3rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-field { display: flex; flex-direction: column; gap: 5px; }
+    .form-field label { font-size: 0.8rem; font-weight: 700; color: #8080a8; text-transform: uppercase; letter-spacing: 0.06em; }
+    .form-input {
+      background: #0e0f1c;
+      border: 1px solid #2a2a4a;
+      border-radius: 6px;
+      padding: 8px 12px;
+      color: #dcd8f0;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.875rem;
+      width: 100%;
+    }
+    .form-input:focus { outline: none; border-color: #7c6af7; box-shadow: 0 0 0 2px rgba(124, 106, 247, 0.2); }
+    textarea.form-input { resize: vertical; min-height: 120px; }
+    .form-actions { display: flex; gap: 10px; margin-top: 16px; }
+    .entry-list { display: flex; flex-direction: column; gap: 12px; }
+    .entry-card {
+      background: #16172e;
+      border: 1px solid #2a2a4a;
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: box-shadow 0.2s;
+    }
+    .entry-card:hover { box-shadow: 0 4px 20px rgba(124, 106, 247, 0.12); }
+    .entry-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
+    .entry-meta { font-size: 0.8rem; color: #6060a0; }
+    .entry-body { color: #b0a8d8; font-size: 0.9rem; line-height: 1.6; }
+    .entry-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
   <header>
@@ -17,7 +65,7 @@
       <a href="../index.html" class="logo">DreamSpace</a>
       <ul>
         <li><a href="../index.html">Home</a></li>
-        <li><a href="entries.html">Entries</a></li>
+        <li><a href="entries.html" class="active">Entries</a></li>
         <li><a href="creative.html">Creative Spark</a></li>
         <li><a href="explore.html">Explore</a></li>
         <li><a href="social.html">Community</a></li>
@@ -26,15 +74,146 @@
   </header>
 
   <main>
-    <section>
-      <h1>Your Dream Entries</h1>
-      <p>Browse your logged dreams. Filter by mood, tag, or date.</p>
-      <p><em>(Prototype placeholder — entry list will display here)</em></p>
+    <section aria-labelledby="journal-heading">
+      <p class="section-label">Your dream journal</p>
+      <h1 id="journal-heading">Dream Entries</h1>
+      <p style="color: #8080a8; margin-bottom: 32px;">
+        Log a new dream or browse past entries below.
+      </p>
+
+      <!-- New entry form -->
+      <div class="entry-form" role="region" aria-labelledby="new-entry-heading">
+        <h2 id="new-entry-heading">Log a New Dream</h2>
+        <form action="#" method="post">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="dream-title">Title</label>
+              <input class="form-input" type="text" id="dream-title" name="title" placeholder="e.g. The Glass City">
+            </div>
+            <div class="form-field">
+              <label for="dream-date">Date</label>
+              <input class="form-input" type="date" id="dream-date" name="date">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="dream-mood">Mood</label>
+              <select class="form-input" id="dream-mood" name="mood">
+                <option value="">Select mood&hellip;</option>
+                <option>Happy</option>
+                <option>Peaceful</option>
+                <option>Anxious</option>
+                <option>Scared</option>
+                <option>Confused</option>
+                <option>Excited</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="dream-type">Type</label>
+              <select class="form-input" id="dream-type" name="type">
+                <option value="">Select type&hellip;</option>
+                <option>Lucid</option>
+                <option>Nightmare</option>
+                <option>Recurring</option>
+                <option>Vivid</option>
+                <option>Normal</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="dream-body">What happened?</label>
+            <textarea class="form-input" id="dream-body" name="body" placeholder="Describe your dream while it&rsquo;s still fresh&hellip;"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn">Save Entry</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Past entries -->
+      <h2 style="margin-bottom: 20px;">Past Entries</h2>
+      <div class="entry-list">
+
+        <article class="entry-card">
+          <div class="entry-header">
+            <h3 style="color: #c5baf7;">The Glass City</h3>
+            <span class="entry-meta">June 19, 2026 &mdash; Happy</span>
+          </div>
+          <div class="entry-tags">
+            <span class="tag">Lucid</span>
+            <span class="tag" style="background: rgba(247, 195, 106, 0.15); color: #f7c36a;">Vivid</span>
+          </div>
+          <p class="entry-body">
+            I was walking through a city built entirely of translucent glass. Every building caught
+            the light differently &mdash; some pink, some green, some deep blue. A train pulled up
+            and I realized I could steer it with my mind. I flew the train over the city
+            until the buildings started melting like ice in the sun.
+          </p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="creative.html" class="btn" style="padding: 6px 14px; font-size: 0.8rem; margin-top: 0;">Creative Spark &#9889;</a>
+          </div>
+        </article>
+
+        <article class="entry-card">
+          <div class="entry-header">
+            <h3 style="color: #c5baf7;">Lost in the Library</h3>
+            <span class="entry-meta">June 18, 2026 &mdash; Anxious</span>
+          </div>
+          <div class="entry-tags">
+            <span class="tag" style="background: rgba(247, 100, 100, 0.15); color: #f77070;">Nightmare</span>
+          </div>
+          <p class="entry-body">
+            An endless library where the shelves disappeared into gray fog above.
+            Every book I opened had my name on it, but the words changed every time I
+            looked away. Someone was following me through the aisles but I never saw them.
+          </p>
+          <div>
+            <a href="creative.html" class="btn" style="padding: 6px 14px; font-size: 0.8rem; margin-top: 8px;">Creative Spark &#9889;</a>
+          </div>
+        </article>
+
+        <article class="entry-card">
+          <div class="entry-header">
+            <h3 style="color: #c5baf7;">The Blue Shore</h3>
+            <span class="entry-meta">June 16, 2026 &mdash; Peaceful</span>
+          </div>
+          <div class="entry-tags">
+            <span class="tag" style="background: rgba(106, 200, 160, 0.15); color: #6ac8a0;">Recurring</span>
+          </div>
+          <p class="entry-body">
+            The same beach I&rsquo;ve dreamed about many times. Teal water with no waves,
+            horizon perfectly flat. Someone was waiting on the shore but I couldn&rsquo;t
+            see who. The sand was warm even though there was no sun.
+          </p>
+          <div>
+            <a href="creative.html" class="btn" style="padding: 6px 14px; font-size: 0.8rem; margin-top: 8px;">Creative Spark &#9889;</a>
+          </div>
+        </article>
+
+        <article class="entry-card">
+          <div class="entry-header">
+            <h3 style="color: #c5baf7;">The Old House</h3>
+            <span class="entry-meta">June 14, 2026 &mdash; Confused</span>
+          </div>
+          <div class="entry-tags">
+            <span class="tag">Normal</span>
+          </div>
+          <p class="entry-body">
+            I was back in a house I didn&rsquo;t recognize but somehow knew very well.
+            Each room led to another version of itself, slightly different.
+            My old dog was there, which was strange and nice.
+          </p>
+          <div>
+            <a href="creative.html" class="btn" style="padding: 6px 14px; font-size: 0.8rem; margin-top: 8px;">Creative Spark &#9889;</a>
+          </div>
+        </article>
+
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 DreamSpace | DMA205 &amp; DEV109 Collaboration | Bellevue College</p>
+    <p>&copy; 2026 DreamSpace &mdash; DMA205 &amp; DEV109 Collaboration &mdash; Bellevue College</p>
   </footer>
 </body>
 </html>

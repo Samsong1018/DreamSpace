@@ -6,20 +6,75 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="DreamSpace — a dream journaling app for logging, exploring, and making creative use of your dreams.">
   <meta name="keywords" content="dream journal, dream logging, lucid dreams, creative writing, DreamSpace">
-  <meta name="author" content="DMA205 Design Team | DEV109 Team 2">
+  <meta name="author" content="Maggie Chao, Sara | DMA205 &amp; DEV109 Team 2">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="DreamSpace">
   <meta property="og:description" content="Log, explore, and create with your dreams.">
   <meta property="og:type" content="website">
   <title>DreamSpace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 80px 24px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(124, 106, 247, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      color: #e8e0ff;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .hero p {
+      color: #9898c0;
+      font-size: 1.1rem;
+      max-width: 520px;
+      margin: 0 auto 32px;
+      position: relative;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .feature-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .feature-item {
+      background: #16172e;
+      border: 1px solid #2a2a4a;
+      border-radius: 12px;
+      padding: 24px 20px;
+    }
+    .feature-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .feature-item h3 { color: #c5baf7; margin-bottom: 6px; }
+    .feature-item p { color: #7070a0; font-size: 0.875rem; margin: 0; }
+  </style>
 </head>
 <body>
   <header>
     <nav>
       <a href="index.html" class="logo">DreamSpace</a>
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="html/entries.html">Entries</a></li>
         <li><a href="html/creative.html">Creative Spark</a></li>
         <li><a href="html/explore.html">Explore</a></li>
@@ -29,26 +84,100 @@
   </header>
 
   <main>
-    <section>
-      <h1>Welcome to DreamSpace</h1>
-      <p>Log your dreams. Find patterns. Spark your creativity.</p>
-      <a href="html/entries.html" class="btn">Start Journaling</a>
+    <!-- Hero -->
+    <section class="hero" aria-label="Welcome section">
+      <h1>Your Dreams,<br>Illuminated</h1>
+      <p>
+        Log your dreams every morning. Find patterns across weeks and months.
+        Turn what you dream into stories, art, and ideas.
+      </p>
+      <div class="hero-actions">
+        <a href="html/entries.html" class="btn">Start Journaling</a>
+        <a href="html/explore.html" class="btn btn-outline">Explore Patterns</a>
+      </div>
     </section>
 
-    <section>
-      <h2>Features</h2>
-      <ul>
-        <li>Log dreams with mood, tags, and type</li>
-        <li>Calendar and timeline views</li>
-        <li>Creative Spark — turn dreams into story prompts</li>
-        <li>Explore patterns across your entries</li>
-        <li>Community sharing</li>
-      </ul>
+    <!-- Features -->
+    <section aria-labelledby="features-heading">
+      <p class="section-label">What DreamSpace offers</p>
+      <h2 id="features-heading">Everything you need to understand your dreams</h2>
+      <div class="feature-row">
+        <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">&#127757;</span>
+          <h3>Dream Log</h3>
+          <p>Capture your dreams the moment you wake up. Add mood, type, and tags for every entry.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">&#128197;</span>
+          <h3>Calendar View</h3>
+          <p>See your dream history across days, weeks, and months. Spot gaps and streaks.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">&#9889;</span>
+          <h3>Creative Spark</h3>
+          <p>Transform a dream entry into a story prompt, character idea, or art concept with one click.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">&#128200;</span>
+          <h3>Pattern Explorer</h3>
+          <p>See which themes, moods, and symbols appear most in your dreams over time.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">&#128101;</span>
+          <h3>Community</h3>
+          <p>Share dreams publicly (or anonymously) and explore what others are dreaming about.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent entries preview -->
+    <section aria-labelledby="recent-heading">
+      <p class="section-label">Sample entries</p>
+      <h2 id="recent-heading">How it looks</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px;">
+            <span class="tag">Lucid</span>
+            <span class="tag" style="background: rgba(247, 195, 106, 0.15); color: #f7c36a;">Vivid</span>
+          </div>
+          <h3>The Glass City</h3>
+          <p style="color: #8080a8; font-size: 0.875rem; margin-bottom: 6px;">June 19, 2026 &mdash; Happy &bull; 9 min ago</p>
+          <p style="font-size: 0.9rem; color: #b0a8d8;">
+            I was walking through a city built entirely of translucent glass. Every building caught
+            the light differently. A train pulled up and I realized I could steer it with my mind&hellip;
+          </p>
+        </div>
+        <div class="card">
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px;">
+            <span class="tag" style="background: rgba(247, 100, 100, 0.15); color: #f77070;">Nightmare</span>
+          </div>
+          <h3>Lost in the Library</h3>
+          <p style="color: #8080a8; font-size: 0.875rem; margin-bottom: 6px;">June 18, 2026 &mdash; Anxious</p>
+          <p style="font-size: 0.9rem; color: #b0a8d8;">
+            An endless library, shelves disappearing into fog. Every book I opened had my name
+            in it, but the words changed before I could finish reading them&hellip;
+          </p>
+        </div>
+        <div class="card">
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px;">
+            <span class="tag" style="background: rgba(106, 200, 160, 0.15); color: #6ac8a0;">Recurring</span>
+          </div>
+          <h3>The Blue Shore</h3>
+          <p style="color: #8080a8; font-size: 0.875rem; margin-bottom: 6px;">June 16, 2026 &mdash; Peaceful</p>
+          <p style="font-size: 0.9rem; color: #b0a8d8;">
+            The same beach I&rsquo;ve visited dozens of times in dreams. Teal water, no waves,
+            the horizon perfectly flat. Someone was waiting, but I couldn&rsquo;t see who&hellip;
+          </p>
+        </div>
+      </div>
+      <p style="margin-top: 24px;">
+        <a href="html/entries.html" class="btn">Open My Dream Journal</a>
+      </p>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 DreamSpace | DMA205 &amp; DEV109 Collaboration | Bellevue College</p>
+    <p>&copy; 2026 DreamSpace &mdash; DMA205 &amp; DEV109 Collaboration &mdash; Bellevue College</p>
   </footer>
 </body>
 </html>

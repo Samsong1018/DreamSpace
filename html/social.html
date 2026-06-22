@@ -4,12 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="DreamSpace Community — share dreams and connect with other dreamers.">
-  <meta name="keywords" content="dream sharing, dream community, social dreams, DreamSpace">
-  <meta name="author" content="DMA205 Design Team | DEV109 Team 2">
+  <meta name="description" content="DreamSpace Community — browse shared dreams and see what others are dreaming about.">
+  <meta name="keywords" content="dream community, shared dreams, public dreams, DreamSpace">
+  <meta name="author" content="Maggie Chao, Sara | DMA205 &amp; DEV109 Team 2">
   <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Community | DreamSpace">
+  <meta property="og:description" content="Browse shared dreams from the DreamSpace community.">
+  <meta property="og:type" content="website">
   <title>Community | DreamSpace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .filter-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid #2a2a4a;
+      background: transparent;
+      color: #8080a8;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: #7c6af7;
+      color: white;
+      border-color: #7c6af7;
+    }
+    .filter-btn:focus-visible { outline: 2px solid #9a86f7; outline-offset: 2px; }
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      gap: 14px;
+    }
+    .pub-entry {
+      background: #16172e;
+      border: 1px solid #2a2a4a;
+      border-radius: 12px;
+      padding: 20px;
+      transition: box-shadow 0.2s;
+    }
+    .pub-entry:hover { box-shadow: 0 4px 18px rgba(124, 106, 247, 0.15); }
+    .pub-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 8px; }
+    .pub-author { font-size: 0.78rem; color: #6060a0; }
+    .pub-title { color: #c5baf7; margin-bottom: 6px; font-size: 1.1rem; }
+    .pub-body { color: #9090b8; font-size: 0.875rem; line-height: 1.6; margin-bottom: 10px; }
+    .pub-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .react-btn {
+      background: transparent;
+      border: 1px solid #2a2a4a;
+      color: #8080a8;
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: all 0.15s;
+    }
+    .react-btn:hover { border-color: #7c6af7; color: #9a86f7; }
+    .react-btn:focus-visible { outline: 2px solid #9a86f7; outline-offset: 2px; }
+  </style>
 </head>
 <body>
   <header>
@@ -20,21 +82,155 @@
         <li><a href="entries.html">Entries</a></li>
         <li><a href="creative.html">Creative Spark</a></li>
         <li><a href="explore.html">Explore</a></li>
-        <li><a href="social.html">Community</a></li>
+        <li><a href="social.html" class="active">Community</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section>
-      <h1>Community</h1>
-      <p>Share your dreams and explore what others are dreaming.</p>
-      <p><em>(Prototype placeholder — community feed will display here)</em></p>
+    <section aria-labelledby="community-heading">
+      <p class="section-label">What others are dreaming</p>
+      <h1 id="community-heading">Community Dreams</h1>
+      <p style="color: #8080a8; max-width: 540px; margin-bottom: 28px;">
+        Browse dreams shared publicly by the DreamSpace community.
+        You can share anonymously or under your name.
+      </p>
+
+      <!-- Filters -->
+      <div class="filter-row">
+        <button type="button" class="filter-btn active">All</button>
+        <button type="button" class="filter-btn">Lucid</button>
+        <button type="button" class="filter-btn">Nightmare</button>
+        <button type="button" class="filter-btn">Recurring</button>
+        <button type="button" class="filter-btn">Peaceful</button>
+        <button type="button" class="filter-btn">Vivid</button>
+      </div>
+
+      <!-- Community entries -->
+      <div class="community-grid">
+
+        <article class="pub-entry">
+          <div class="pub-header">
+            <div>
+              <h2 class="pub-title">The Forest That Breathed</h2>
+              <p class="pub-author">anon_dreamer &bull; June 20</p>
+            </div>
+            <span class="tag">Lucid</span>
+          </div>
+          <p class="pub-body">
+            Every tree in the forest was breathing in sync. The leaves moved not from wind
+            but from the exhale. I put my hand on a trunk and felt a heartbeat.
+          </p>
+          <div class="pub-footer">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="tag" style="background: rgba(247, 195, 106, 0.12); color: #f0b85a;">Vivid</span>
+            </div>
+            <button type="button" class="react-btn">&#9825; 14 resonate</button>
+          </div>
+        </article>
+
+        <article class="pub-entry">
+          <div class="pub-header">
+            <div>
+              <h2 class="pub-title">Elevator to Nowhere</h2>
+              <p class="pub-author">sleepy_kira &bull; June 19</p>
+            </div>
+            <span class="tag" style="background: rgba(247, 100, 100, 0.12); color: #f07070;">Nightmare</span>
+          </div>
+          <p class="pub-body">
+            An elevator with no buttons. Every time the doors opened, I was on a different
+            floor with people who all recognized me but I didn&rsquo;t know any of them.
+          </p>
+          <div class="pub-footer">
+            <div></div>
+            <button type="button" class="react-btn">&#9825; 31 resonate</button>
+          </div>
+        </article>
+
+        <article class="pub-entry">
+          <div class="pub-header">
+            <div>
+              <h2 class="pub-title">The Same Staircase</h2>
+              <p class="pub-author">mq_dreams &bull; June 18</p>
+            </div>
+            <span class="tag" style="background: rgba(106, 200, 160, 0.12); color: #6ac8a0;">Recurring</span>
+          </div>
+          <p class="pub-body">
+            I&rsquo;ve had this dream at least six times. A spiral staircase that goes down
+            forever but also somehow ends where it started.
+          </p>
+          <div class="pub-footer">
+            <div></div>
+            <button type="button" class="react-btn">&#9825; 8 resonate</button>
+          </div>
+        </article>
+
+        <article class="pub-entry">
+          <div class="pub-header">
+            <div>
+              <h2 class="pub-title">Rain Inside</h2>
+              <p class="pub-author">anon_dreamer &bull; June 17</p>
+            </div>
+            <span class="tag">Normal</span>
+          </div>
+          <p class="pub-body">
+            It was raining inside my childhood home, but no one thought it was strange.
+            My family was eating dinner and the rain was just going through them.
+          </p>
+          <div class="pub-footer">
+            <div></div>
+            <button type="button" class="react-btn">&#9825; 22 resonate</button>
+          </div>
+        </article>
+
+        <article class="pub-entry">
+          <div class="pub-header">
+            <div>
+              <h2 class="pub-title">Floating Above the City</h2>
+              <p class="pub-author">urban_dreamer &bull; June 16</p>
+            </div>
+            <span class="tag">Lucid</span>
+          </div>
+          <p class="pub-body">
+            I could fly, but only about three feet off the ground. Still, I flew all over
+            the city that way. People waved like it was totally normal.
+          </p>
+          <div class="pub-footer">
+            <div style="display: flex; gap: 8px;">
+              <span class="tag" style="background: rgba(247, 195, 106, 0.12); color: #f0b85a;">Vivid</span>
+            </div>
+            <button type="button" class="react-btn">&#9825; 47 resonate</button>
+          </div>
+        </article>
+
+        <article class="pub-entry">
+          <div class="pub-header">
+            <div>
+              <h2 class="pub-title">A Map of Every Place I&rsquo;ve Been</h2>
+              <p class="pub-author">cartography_k &bull; June 15</p>
+            </div>
+            <span class="tag" style="background: rgba(106, 200, 160, 0.12); color: #6ac8a0;">Peaceful</span>
+          </div>
+          <p class="pub-body">
+            I found a map that showed every place I&rsquo;d ever visited, but also places
+            I&rsquo;d only dreamed about. Some locations I didn&rsquo;t recognize at all.
+          </p>
+          <div class="pub-footer">
+            <div></div>
+            <button type="button" class="react-btn">&#9825; 19 resonate</button>
+          </div>
+        </article>
+
+      </div>
+
+      <p style="margin-top: 32px;">
+        <a href="entries.html" class="btn">Share a Dream</a>
+      </p>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 DreamSpace | DMA205 &amp; DEV109 Collaboration | Bellevue College</p>
+    <p>&copy; 2026 DreamSpace &mdash; DMA205 &amp; DEV109 Collaboration &mdash; Bellevue College</p>
   </footer>
 </body>
 </html>
